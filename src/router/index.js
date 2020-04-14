@@ -4,17 +4,24 @@ import Home from '../views/Home.vue';
 import Signup from "../views/Signup.vue";
 import Login from "../views/Login.vue";
 import Logout from "../views/Logout.vue";
-import PostIndex from "../views/PostIndex.vue";
+import PostsIndex from "../views/PostsIndex.vue";
+import PostsNew from "../views/PostsNew.vue";
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: "/posts",
-    name: "postindex",
-    component:PostIndex
+    name: "postsindex",
+    component:PostsIndex
   },
-  
+
+  {
+    path: "/posts/new",
+    name: "postsnew",
+    component:PostsNew
+  },
+
   {
     path: '/',
     name: 'Home',
