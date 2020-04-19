@@ -2,6 +2,7 @@
   <div class="posts-show">
     <h1>{{ message }}</h1>
     <h1>{{ post }}</h1>
+    <a v-bind:href="`/posts/${post.id}/edit`">Edit this Post</a>
   </div>
 </template>
 
