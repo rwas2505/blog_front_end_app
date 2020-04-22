@@ -68,6 +68,9 @@ export default {
       } else {
         return false;
       }
+    },
+    getUserId: function() {
+      return parseInt(localStorage.getItem("user_id"));
     }
   }
 };
