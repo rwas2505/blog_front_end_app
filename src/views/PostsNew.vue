@@ -6,6 +6,7 @@
         <ul>
           <li class="text-danger" v-for="error in errors">{{ error }}</li>
         </ul>
+        <img v-if="status" v-bind:src="`https://http.cat/${status}`">
         <div class="form-group">
           <label>title:</label> 
           <input type="text" class="form-control" v-model="title">
@@ -13,6 +14,9 @@
         <div class="form-group">
           <label>body:</label>
           <input type="text" class="form-control" v-model="body">
+          <small v-if="body.length <= 15"> {{20 - body.length}} characters remaining  </small>
+          <small v-if=" body.length > 15 && body.length <= 20" class="text-warning"> {{20 - body.length}} characters remaining  </small>
+          <small v-if="body.length > 20" class="text-danger"> 20 characters max allowed</small>
         </div>
         <div class="form-group">
           <label>image url:</label>
@@ -33,7 +37,8 @@ export default {
       title: "",
       body: "",
       imageUrl: "",
-      errors: []
+      errors: [], 
+      status: ""
     };
   },
   methods: {
@@ -50,6 +55,8 @@ export default {
         })
         .catch(error => {
           this.errors = error.response.data.errors;
+          console.log(error.response.status);
+          this.status = error.response.status;
         });
     }
   }

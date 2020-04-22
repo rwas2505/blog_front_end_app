@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <h1>{{ message }}</h1>
-    <div v-for="post in posts">
+    <div v-for="post in posts" v-on:click="currentPost = post" v-bind:class="{selected: currentPost === post}">
       <!-- <p>id: {{ post.id }}</p>
       <p>title: <a v-bind:href="`/posts/${post.id}`">{{ post.title }}</a></p>
       <p>body: {{ post.body }}</p>
@@ -21,8 +21,12 @@
 </template>
 
 <style>
+  .selected {
+    color: white;
+    background-color: steelBlue;
+    transition: background-color 1s ease;
+  }
 </style>
-
 <script>
 import axios from "axios";
 
@@ -30,7 +34,8 @@ export default {
   data: function() {
     return {
       message: "Welcome to Vue.js PostIndex!",
-      posts: []
+      posts: [],
+      currentPost: {}
     };
   },
   created: function() {
