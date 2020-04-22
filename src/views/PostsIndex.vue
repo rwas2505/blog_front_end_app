@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <h1>{{ message }}</h1>
-    <div v-for="post in posts" v-on:click="currentPost = post" v-bind:class="{selected: currentPost === post}">
+    <div v-for="post in filterBy(posts, $parent.titleFilter, 'title')" v-on:click="currentPost = post" v-bind:class="{selected: currentPost === post}">
       <!-- <p>id: {{ post.id }}</p>
       <p>title: <a v-bind:href="`/posts/${post.id}`">{{ post.title }}</a></p>
       <p>body: {{ post.body }}</p>
@@ -29,8 +29,10 @@
 </style>
 <script>
 import axios from "axios";
+import Vue2Filters from "vue2-filters";
 
 export default {
+  mixins: [Vue2Filters.mixin],
   data: function() {
     return {
       message: "Welcome to Vue.js PostIndex!",
